@@ -1,5 +1,8 @@
 <?php
 
+
+// namespace App\Http\Controllers\Auth;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +23,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/profil', [App\Http\Controllers\HomeController::class, 'profil'])->name('profil');
+
+Route::get('/basic-table', [App\Http\Controllers\HomeController::class, 'table'])->name('table');
+
+Route::get('/table-fasilitas', [App\Http\Controllers\HomeController::class, 'fasilitas'])->name('fasilitas');
