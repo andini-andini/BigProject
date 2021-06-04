@@ -3,6 +3,7 @@
 
 // namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\fasilitasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,5 @@ Route::get('/profil', [App\Http\Controllers\HomeController::class, 'profil'])->n
 Route::get('/basic-table', [App\Http\Controllers\HomeController::class, 'table'])->name('table');
 
 Route::get('/table-fasilitas', [App\Http\Controllers\HomeController::class, 'fasilitas'])->name('fasilitas');
+
+Route::resource('fasilitas', fasilitasController::class);

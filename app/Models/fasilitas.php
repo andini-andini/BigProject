@@ -16,6 +16,11 @@ class fasilitas extends Model
      *
      * @var array
      */
+
+    protected $table = "fasilitas"; // Eloquent akan membuat model fasilitas menyimpan record di tabel fasilitas
+    public $timestamps = false;
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'nama',
     ];

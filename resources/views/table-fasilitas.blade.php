@@ -217,19 +217,22 @@
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">Table Fasilitas</h4>
                     </div>
-                    {{-- <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    {{-- <div class="float-right my-2">
+                        <a class="btn btn-success" href="{{ route('fasilitas.create') }}"> Input Fasilitas</a>
+                        </div> --}}
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-
-                                <a href="{{ route('table') }}"
+                                <a class="btn btn-success" href="{{ route('fasilitas.create') }}"> Input Fasilitas</a>
+                                {{-- <a href="{{ route('table') }}"
                                     class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">User
                                 </a>
                                 <a href="{{ route('fasilitas') }}"
                                     class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Fasilitas
-                                </a>
+                                </a> --}}
                             </ol>
                         </div>
-                    </div> --}}
+                    </div>
                     {{-- <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
@@ -249,6 +252,12 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                <p>{{ $message }}</p>
+                </div>
+            @endif
+
             <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
@@ -264,14 +273,23 @@
                                                 <th class="border-top-0">ID</th>
                                                 <th class="border-top-0">Name</th>
                                                 <th class="border-top-0">Update_at</th>
+                                                <th class="border-top-0" width="280px">Action</th>
 
                                         </tr>
                                     </thead>
                                     @foreach ($fasilitas as $items)
                                         <tr>
-                                            <td>{{$items['id']}}</td>
-                                            <td>{{$items['nama']}}</td>
-                                            <td>{{$items['updated_at']}}</td>
+                                            <td>{{$items->id}}</td>
+                                            <td>{{$items->nama}}</td>
+                                            <td>{{$items->updated_at}}</td>
+                                            <td>
+                                            <form action="{{ route('fasilitas.destroy', $items->id) }}" method="POST">
+                                                <a class="btn btn-primary" href="{{ route('fasilitas.edit', $items->id) }}">Edit</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
                                         </tr>
                                     @endforeach
                                 </table>
