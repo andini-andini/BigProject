@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\fasilitas;
-use Fasilitas as GlobalFasilitas;
+use App\Models\kamar;
 use Illuminate\Http\Request;
 
-class TableCRUDController extends Controller
+class kamarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,8 @@ class TableCRUDController extends Controller
      */
     public function index()
     {
-        $fasilitas = fasilitas::all(); // Mengambil semua isi tabel
-        $posts = fasilitas::orderBy('nama', 'desc')->paginate(10);
-        return view('table-fasilitas', compact('fasilitas'));
-        // with('i', (request()->input('page', 1) - 1) * 5);
+        $kamar = kamar::all();
+        return view('table-kamar', ['kamar' => $kamar]);
     }
 
     /**
@@ -28,7 +25,7 @@ class TableCRUDController extends Controller
      */
     public function create()
     {
-        return view('fasilitas.create');
+        return view('kamar.create');
     }
 
     /**
@@ -41,9 +38,11 @@ class TableCRUDController extends Controller
     {
         $request->validate([
             'nama' => 'required',
+            'harga' => 'required',
+            'deskripsi' => 'required',
         ]);
-        fasilitas::create($request->all());
-        return redirect()->route('fasilitas')->with('success', 'Fasilitas Berhasil Ditambahkan');
+        kamar::create($request->all());
+        return redirect()->route('kamar')->with('success', 'Kamar Berhasil Ditambahkan');
     }
 
     /**
@@ -54,8 +53,7 @@ class TableCRUDController extends Controller
      */
     public function show($id)
     {
-        // $fasilitas = fasilitas::find($id);
-        // return view('fdetail', compact('Mahasiswa'));
+        //
     }
 
     /**
@@ -66,8 +64,8 @@ class TableCRUDController extends Controller
      */
     public function edit($id)
     {
-        $fasilitas = fasilitas::find($id);
-        return view('fasilitas.edit', compact('fasilitas'));
+        $kamar = kamar::find($id);
+        return view('kamar.edit', compact('kamar'));
     }
 
     /**
@@ -81,10 +79,12 @@ class TableCRUDController extends Controller
     {
         $request->validate([
             'nama' => 'required',
+            'harga' => 'required',
+            'deskripsi' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
-        fasilitas::find($id)->update($request->all());
-        return redirect()->route('fasilitas')->with('success', 'Fasilitas Berhasil Diupdate');
+        kamar::find($id)->update($request->all());
+        return redirect()->route('kamar')->with('success', 'Kamar Berhasil Diupdate');
     }
 
     /**
@@ -95,7 +95,7 @@ class TableCRUDController extends Controller
      */
     public function destroy($id)
     {
-        fasilitas::find($id)->delete();
-        return redirect()->route('fasilitas')->with('success', 'Fasilitas Berhasil Dihapus');
+        kamar::find($id)->delete();
+        return redirect()->route('kamar')->with('success', 'Kamar Berhasil Dihapus');
     }
 }

@@ -14,13 +14,8 @@ class fasilitasController extends Controller
      */
     public function index()
     {
-        $fasilitas = fasilitas::all(); // Mengambil semua isi tabel
-        // $posts = fasilitas::orderBy('nama', 'desc')->paginate(10);
-        // // return view('table-fasilitas', compact('fasilitas'));
+        $fasilitas = fasilitas::all();
         return view('table-fasilitas', ['fasilitas' => $fasilitas]);
-
-        // $fasilitas = fasilitas::all();
-        // return view('table-fasilitas',['fasilitas' => $fasilitas]);
     }
 
     /**
