@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="d-md-flex">
                 <ol class="breadcrumb ms-auto">
-                    <li><a href="#" class="fw-normal">Dashboard</a></li>
+                    <li><a class="fw-normal">Dashboard</a></li>
                 </ol>
             </div>
         </div>
@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
-                <h3 class="box-title">Tambah Fasilitas</h3>
+                <h3 class="box-title">Edit User</h3>
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Whoops!</strong> There were some problems with your input<br><br>
@@ -28,11 +28,16 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('fasilitas.store') }}" id="myForm">
+                <form method="post" action="{{ route('user.update', $users->id) }}" id="myForm">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" name="nama" class="form-control" id="nama" aria-describedby="nama" >
+                        <label for="name">Nama</label>
+                        <input type="text" name="name" class="form-control" id="name" value="{{ $users->name }}" aria-describedby="name" >
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" id="email" value="{{ $users->email }}" aria-describedby="email" >
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

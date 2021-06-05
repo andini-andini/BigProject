@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\fasilitas;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class fasilitasController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class fasilitasController extends Controller
      */
     public function index()
     {
-        $fasilitas = fasilitas::all();
-        return view('fasilitas.index', compact('fasilitas'));
+        $users = User::all();
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -25,7 +25,7 @@ class fasilitasController extends Controller
      */
     public function create()
     {
-        return view('fasilitas.create');
+        return view('user.create');
     }
 
     /**
@@ -39,8 +39,8 @@ class fasilitasController extends Controller
         $request->validate([
             'nama' => 'required',
         ]);
-        fasilitas::create($request->all());
-        return redirect()->route('fasilitas.index')->with('success', 'Fasilitas Berhasil Ditambahkan');
+        user::create($request->all());
+        return redirect()->route('user.index')->with('success', 'User Berhasil Ditambahkan');
     }
 
     /**
@@ -62,8 +62,8 @@ class fasilitasController extends Controller
      */
     public function edit($id)
     {
-        $fasilitas = fasilitas::find($id);
-        return view('fasilitas.edit', compact('fasilitas'));
+        $users = User::find($id);
+        return view('user.edit', compact('users'));
     }
 
     /**
@@ -79,8 +79,8 @@ class fasilitasController extends Controller
             'nama' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
-        fasilitas::find($id)->update($request->all());
-        return redirect()->route('fasilitas.index')->with('success', 'Fasilitas Berhasil Diupdate');
+        User::find($id)->update($request->all());
+        return redirect()->route('user.index')->with('success', 'User Berhasil Diupdate');
     }
 
     /**
@@ -91,7 +91,7 @@ class fasilitasController extends Controller
      */
     public function destroy($id)
     {
-        fasilitas::find($id)->delete();
-        return redirect()->route('fasilitas.index')->with('success', 'Fasilitas Berhasil Dihapus');
+        User::find($id)->delete();
+        return redirect()->route('user.index')->with('success', 'User Berhasil Dihapus');
     }
 }

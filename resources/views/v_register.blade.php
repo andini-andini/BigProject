@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form BANK BSI</title>
+    <title>HOTELLY - Sign Up</title>
 
+    <link rel="icon" type="image/png" sizes="16x16" href="templateAdmin/plugins/images/favicon.png">
     <!-- Font Icon -->
     <link rel="stylesheet" href="templateLogin/fonts/material-icon/css/material-design-iconic-font.min.css">
 

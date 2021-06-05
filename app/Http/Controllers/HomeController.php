@@ -29,31 +29,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('v_home_admin');
+        return view('home.index');
     }
 
     public function profil()
     {
         return view('profil');
-    }
-
-    public function table()
-    {
-        $users = User::all();
-        $posts = User::orderBy('name', 'desc')->paginate(10);
-        return view('basic-table', compact('users'));
-    }
-
-    public function fasilitas()
-    {
-        $fasilitas = fasilitas::all();
-        $posts = fasilitas::orderBy('nama', 'desc')->paginate(10);
-        return view('table-fasilitas', compact('fasilitas'));
-    }
-    public function kamar()
-    {
-        $kamar = kamar::all();
-        $posts = kamar::orderBy('nama', 'desc')->paginate(10);
-        return view('table-kamar', compact('kamar'));
     }
 }

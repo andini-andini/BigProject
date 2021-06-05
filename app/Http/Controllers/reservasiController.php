@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\fasilitas;
+use App\Models\reservasi;
 use Illuminate\Http\Request;
 
-class fasilitasController extends Controller
+class reservasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class fasilitasController extends Controller
      */
     public function index()
     {
-        $fasilitas = fasilitas::all();
-        return view('fasilitas.index', compact('fasilitas'));
+        $reservasi = reservasi::all();
+        return view('reservasi.index', ['reservasi' => $reservasi]);
     }
 
     /**
@@ -25,7 +25,7 @@ class fasilitasController extends Controller
      */
     public function create()
     {
-        return view('fasilitas.create');
+        return view('reservasi.create');
     }
 
     /**
@@ -37,10 +37,14 @@ class fasilitasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
+            'kamar_id' => 'required',
+            'checkin' => 'required',
+            'checkout' => 'required',
+            'total' => 'required',
+            'status' => 'required',
         ]);
-        fasilitas::create($request->all());
-        return redirect()->route('fasilitas.index')->with('success', 'Fasilitas Berhasil Ditambahkan');
+        reservasi::create($request->all());
+        return redirect()->route('reservasi.index')->with('success', 'Reservasi Berhasil Ditambahkan');
     }
 
     /**
@@ -62,8 +66,8 @@ class fasilitasController extends Controller
      */
     public function edit($id)
     {
-        $fasilitas = fasilitas::find($id);
-        return view('fasilitas.edit', compact('fasilitas'));
+        $reservasi = reservasi::find($id);
+        return view('reservasi.edit', compact('reservasi'));
     }
 
     /**
@@ -76,11 +80,15 @@ class fasilitasController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required',
+            'kamar_id' => 'required',
+            'checkin' => 'required',
+            'checkout' => 'required',
+            'total' => 'required',
+            'status' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
-        fasilitas::find($id)->update($request->all());
-        return redirect()->route('fasilitas.index')->with('success', 'Fasilitas Berhasil Diupdate');
+        reservasi::find($id)->update($request->all());
+        return redirect()->route('reservasi.index')->with('success', 'Reservasi Berhasil Diupdate');
     }
 
     /**
@@ -91,7 +99,7 @@ class fasilitasController extends Controller
      */
     public function destroy($id)
     {
-        fasilitas::find($id)->delete();
-        return redirect()->route('fasilitas.index')->with('success', 'Fasilitas Berhasil Dihapus');
+        reservasi::find($id)->delete();
+        return redirect()->route('reservasi.index')->with('success', 'Reservasi Berhasil Dihapus');
     }
 }

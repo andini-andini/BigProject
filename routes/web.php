@@ -5,6 +5,8 @@
 
 use App\Http\Controllers\fasilitasController;
 use App\Http\Controllers\kamarController;
+use App\Http\Controllers\reservasiController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,16 +21,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/profil', [App\Http\Controllers\HomeController::class, 'profil'])->name('profil');
-Route::get('/basic-table', [App\Http\Controllers\HomeController::class, 'table'])->name('table');
-Route::get('/table-fasilitas', [App\Http\Controllers\HomeController::class, 'fasilitas'])->name('fasilitas');
-Route::get('/table-kamar', [App\Http\Controllers\HomeController::class, 'kamar'])->name('kamar');
+// Route::get('/profil', [App\Http\Controllers\HomeController::class, 'profil'])->name('profil');
 
+Route::resource('user', UserController::class);
 Route::resource('fasilitas', fasilitasController::class);
 Route::resource('kamar', kamarController::class);
+Route::resource('reservasi', reservasiController::class);

@@ -1,12 +1,23 @@
-@extends('fasilitas.layout')
+@extends('layouts.main')
 
 @section('content')
-
-<div class="container mt-5">
-    <div class="row justify-content-center align-items-center">
-        <div class="card" style="width: 24rem;">
-            <div class="card-header" > Tambah Kamar </div>
-            <div class="card-body">
+<div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="#" class="fw-normal">Dashboard</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title">Tambah Kamar</h3>
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Whoops!</strong> There were some problems with your input<br><br>
@@ -32,9 +43,9 @@
                         <input type="text" name="deskripsi" class="form-control" id="deskripsi" aria-describedby="deskripsi" >
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 @endsection

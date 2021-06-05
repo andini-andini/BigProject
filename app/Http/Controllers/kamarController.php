@@ -15,7 +15,7 @@ class kamarController extends Controller
     public function index()
     {
         $kamar = kamar::all();
-        return view('table-kamar', ['kamar' => $kamar]);
+        return view('kamar.index', ['kamar' => $kamar]);
     }
 
     /**
@@ -42,7 +42,7 @@ class kamarController extends Controller
             'deskripsi' => 'required',
         ]);
         kamar::create($request->all());
-        return redirect()->route('kamar')->with('success', 'Kamar Berhasil Ditambahkan');
+        return redirect()->route('kamar.index')->with('success', 'Kamar Berhasil Ditambahkan');
     }
 
     /**
@@ -84,7 +84,7 @@ class kamarController extends Controller
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
         kamar::find($id)->update($request->all());
-        return redirect()->route('kamar')->with('success', 'Kamar Berhasil Diupdate');
+        return redirect()->route('kamar.index')->with('success', 'Kamar Berhasil Diupdate');
     }
 
     /**
@@ -96,6 +96,6 @@ class kamarController extends Controller
     public function destroy($id)
     {
         kamar::find($id)->delete();
-        return redirect()->route('kamar')->with('success', 'Kamar Berhasil Dihapus');
+        return redirect()->route('kamar.index')->with('success', 'Kamar Berhasil Dihapus');
     }
 }
